@@ -1,21 +1,25 @@
-function mergeTwoLists(l1, l2) {
-  const dummy = new ListNode();
-  let current = dummy;
-  while (l1 !== null && l2 !== null) {
-    if (l1.val < l2.val) {
-      current.next = l1;
-      l1 = l1.next;
-    } else {
-      current.next = l2;
-      l2 = l2.next;
+const cocktailShakerSort = (arr) => {
+  let swapped = true;
+  let start = 0;
+  let end = arr.length - 1;
+  while (swapped) {
+    swapped = false;
+    for (let i = start; i < end; i++) {
+      if (arr[i] > arr[i + 1]) {
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+        swapped = true;
+      }
     }
-    current = current.next;
+    if (!swapped) break;
+    swapped = false;
+    end--;
+    for (let i = end - 1; i >= start; i--) {
+      if (arr[i] > arr[i + 1]) {
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+        swapped = true;
+      }
+    }
+    start++;
   }
-  if (l1 !== null) {
-    current.next = l1;
-  }
-  if (l2 !== null) {
-    current.next = l2;
-  }
-  return dummy.next;
-}
+  return arr;
+};
