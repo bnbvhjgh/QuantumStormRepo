@@ -1,1 +1,9 @@
-const isPalindrome = (str) => str === str.split("").reverse().join("");
+function squareDigits(num) {
+  return parseInt(
+    num
+      .toString()
+      .split("")
+      .map((digit) => digit ** 2)
+      .join(""),
+  );
+}
